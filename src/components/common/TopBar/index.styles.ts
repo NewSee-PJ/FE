@@ -7,6 +7,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  width: 100%;
+  max-width: 430px;
+  top: 0;
 `;
 
 export const TopBarTitle = styled.p`

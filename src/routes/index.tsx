@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/components/common/Layout";
-import { Home, Words, Mypage, News } from "@pages/index";
+import { Home, Words, Mypage, News, Login } from "@pages/index";
 
 export const router = createBrowserRouter([
   {
@@ -11,6 +11,7 @@ export const router = createBrowserRouter([
       { path: "words", element: <Words /> },
       { path: "mypage", element: <Mypage /> },
       { path: "news", element: <News /> },
+      { path: "login", element: <Login /> },
     ],
   },
 ]);
