@@ -1,3 +1,4 @@
+import type { LevelType } from "./level";
 export type NewsDetailType = {
   newsId: number;
   title: string;
@@ -19,5 +20,3 @@ export type KeywordType = {
 };
 
 export type CategoryType = "과학" | "경제" | "사회" | "연예" | "기타";
-
-export type LevelType = "상" | "중" | "하";
