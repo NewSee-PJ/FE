@@ -18,7 +18,7 @@ export default function Layout() {
         <S.AppMain>
           <Outlet />
         </S.AppMain>
-        <BottomNav />
+        {isHeaderVisible && <BottomNav />}
       </S.AppWrapper>
     </S.AppContainer>
   );
