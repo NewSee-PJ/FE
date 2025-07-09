@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { LevelType } from "@/types/level";
+import { LevelType } from "@/types/level";
 
 interface UserState {
   accessToken: string | null;
@@ -10,18 +10,20 @@ interface UserState {
   profileImage: string | null;
   login: (token: string) => void;
   logout: () => void;
+  setLevel: (level: LevelType) => void;
 }
 
 export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
       accessToken: null,
-      level: "중",
+      level: LevelType.MEDIUM,
       name: null,
       email: null,
       profileImage: null,
       login: (accessToken) => set({ accessToken }),
       logout: () => set({ accessToken: null }),
+      setLevel: (level: LevelType) => set({ level }),
     }),
     {
       name: "auth",

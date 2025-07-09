@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type ModalType = "confirm" | "check" | "loading" | null;
+type ModalType = "confirm" | "check" | "loading" | "custom" | null;
 
 interface BaseModalProps {
   [key: string]: any;

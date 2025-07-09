@@ -1,1 +1,5 @@
-export type LevelType = "상" | "중" | "하";
+export enum LevelType {
+  HIGH = "high",
+  MEDIUM = "medium",
+  LOW = "low",
+}

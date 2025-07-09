@@ -2,7 +2,18 @@ import * as S from "./index.styles";
 import Logo from "@assets/icons/common/logo.svg?react";
 import KakaoLogo from "@assets/icons/login/kakaoLogo.svg?react";
 import TopBar from "@/components/common/TopBar";
+import { useModal } from "@hooks/useModal";
+import LevelSelectModal from "@/components/common/Modal/LevelSelectModal";
+
 export const Login = () => {
+  const { openModal, closeModal } = useModal();
+
+  const handleOpenModal = () => {
+    openModal("custom", {
+      children: () => <LevelSelectModal closeModal={closeModal} />,
+    });
+  };
+
   return (
     <>
       <TopBar />
@@ -17,15 +28,15 @@ export const Login = () => {
             로그인 후 NewSee의 모든 기능을 이용해보세요!
           </S.Description>
         </S.ContentContainer>
-        <KaKaoLoginButton />
+        <KaKaoLoginButton onClick={handleOpenModal} />
       </S.Container>
     </>
   );
 };
 
-const KaKaoLoginButton = () => {
+const KaKaoLoginButton = ({ onClick }: { onClick: () => void }) => {
   return (
-    <S.LoginButton>
+    <S.LoginButton onClick={onClick}>
       <S.KakaoLogoContainer>
         <KakaoLogo width={28} height={28} />
       </S.KakaoLogoContainer>
