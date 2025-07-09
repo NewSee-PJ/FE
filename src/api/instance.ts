@@ -15,12 +15,12 @@ applyInterceptors(newsInstance);
 
 // words section
 const wordsInstance = axios.create(defaultInstance.defaults);
-newsInstance.defaults.baseURL += "/words";
+wordsInstance.defaults.baseURL += "/words";
 applyInterceptors(wordsInstance);
 
 // user section
 const userInstance = axios.create(defaultInstance.defaults);
-newsInstance.defaults.baseURL += "/user";
+userInstance.defaults.baseURL += "/user";
 applyInterceptors(userInstance);
 
 export { defaultInstance, newsInstance, wordsInstance, userInstance };

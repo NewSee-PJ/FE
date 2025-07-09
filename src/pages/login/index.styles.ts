@@ -5,7 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 48px;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  padding: 0 20px;
+  flex: 1;
+  margin-top: 150px;
 `;
 
 export const HeadLine = styled.h1`

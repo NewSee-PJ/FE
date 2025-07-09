@@ -30,13 +30,17 @@ const ModalRoot = () => {
         );
       case "loading":
         return <LoadingModal message={props.message} />;
+      case "custom":
+        return typeof props.children === "function"
+          ? props.children({ closeModal })
+          : props.children;
       default:
         return null;
     }
   };
 
   return (
-    <S.Backdrop onClick={closeModal}>
+    <S.Backdrop>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
         {renderModalContent()}
       </S.ModalContainer>
