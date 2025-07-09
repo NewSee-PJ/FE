@@ -10,16 +10,16 @@ import type {
 } from "axios";
 
 interface ApiSuccess<T> {
-  isSuccess: true;
   code: string;
   message: string;
   result: T;
+  success: true;
 }
 
 interface ApiFailure {
-  isSuccess: false;
   code: string;
   message: string;
+  success: false;
 }
 
 export type ApiResponse<T> = ApiSuccess<T> | ApiFailure;
@@ -75,7 +75,7 @@ export const applyInterceptors = (instance: AxiosInstance): void => {
     (config: InternalAxiosRequestConfig) => {
       const token = useUserStore.getState().accessToken;
 
-      // admin 로그인 전에는 인터셉터 제외
+      // 로그인 전에는 인터셉터 제외
       const excludedPaths = ["/kakao"];
 
       const isExcluded = excludedPaths.some((path) =>
