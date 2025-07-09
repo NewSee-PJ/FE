@@ -197,7 +197,12 @@ export const componentColor = {
   },
 };
 
+export const gradients = {
+  blue: `linear-gradient(90deg, ${primitive.bluePrimary[400]} 0%,  ${primitive.bluePrimary[600]} 100%)`,
+};
+
 export const theme = {
   colors: componentColor,
   fonts: fonts,
+  gradients: gradients,
 };

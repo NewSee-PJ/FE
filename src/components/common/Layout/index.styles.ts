@@ -18,12 +18,11 @@ export const AppWrapper = styled.div`
 `;
 
 export const AppMain = styled.main`
-  flex: 1;
-  padding: 20px;
   padding-bottom: 56px;
   padding-top: 68px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
