@@ -191,6 +191,7 @@ export const componentColor = {
     yellow: primitive.yellow[500],
     orange: primitive.orange[500],
     red: primitive.red[500],
+    blue: primitive.bluePrimary[500],
     divider: primitive.gray[200],
     gray700: primitive.gray[700],
   },
