@@ -1,3 +1,8 @@
+import { LogoutModal } from "@/components/mypage/LogoutModal";
 export const Mypage = () => {
-  return <div>Mypage 페이지입니다.</div>;
+  return (
+    <div>
+      <LogoutModal />
+    </div>
+  );
 };

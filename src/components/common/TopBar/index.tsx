@@ -9,10 +9,10 @@ interface TopBarProps {
 
 const TopBar = ({ title }: TopBarProps) => {
   const theme = useTheme();
-  const navigate = useNavigate(); // ✅ 뒤로가기 훅
+  const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1); // ✅ 이전 페이지로 이동
+    navigate(-1);
   };
   return (
     <S.Container>
