@@ -1,5 +1,5 @@
 import * as S from "./index.styles";
-import { HeaderLogo } from "@assets/icons/common";
+import HeaderLogo from "@assets/icons/common/logo.svg?react";
 import { useUserStore } from "@stores/user";
 import profileDefaultImage from "@assets/images/profileImage.png";
 import { useNavigate } from "react-router-dom";

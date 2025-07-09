@@ -1,5 +1,5 @@
 import * as S from "./index.styles";
-import { ArrowIcon } from "@/assets/icons/common";
+import ArrowIcon from "@assets/icons/common/arrow.svg?react";
 import { useTheme } from "styled-components";
 import { useNavigate } from "react-router-dom";
 

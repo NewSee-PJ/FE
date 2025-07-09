@@ -1,8 +1,7 @@
 import * as S from "./index.styles";
-import { Logo } from "@assets/icons/common";
+import Logo from "@assets/icons/common/logo.svg?react";
+import KakaoLogo from "@assets/icons/login/kakaoLogo.svg?react";
 import TopBar from "@/components/common/TopBar";
-import { KakaoLogo } from "@/assets/icons/login";
-
 export const Login = () => {
   return (
     <>
