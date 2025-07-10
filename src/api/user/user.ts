@@ -1,6 +1,7 @@
 import { sendRequest } from "../request";
 import { userInstance } from "../instance";
 import { LevelType } from "@/types/level";
+import axios from "axios";
 
 interface KakaoLoginResult {
   provider: string;
@@ -13,12 +14,34 @@ interface KakaoLoginResult {
   new: boolean;
 }
 
-export const kakaoLoginCallbackAPI = async (code: string) => {
+export const getKakaoAccessToken = async (code: string) => {
+  const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+
+  const response = await axios.post(
+    "https://kauth.kakao.com/oauth/token",
+    new URLSearchParams({
+      grant_type: "authorization_code",
+      client_id: REST_API_KEY,
+      redirect_uri: REDIRECT_URI,
+      code,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+
+  return response.data.access_token;
+};
+
+export const loginWithKakaoToken = async (accessToken: string) => {
   const response = await sendRequest<KakaoLoginResult>(
     userInstance,
-    "GET",
+    "POST",
     "/kakao",
-    { kakaoAccessToken: code }
+    { accessToken: accessToken }
   );
 
   if (!response.success) {
