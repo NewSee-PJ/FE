@@ -3,9 +3,9 @@ import { useState } from "react";
 import LevelOptionCard from "../../LevelOptionCard";
 import CommonButton from "../../CommonButton";
 import { LevelType } from "@/types/level";
-import { useUserStore } from "@stores/user";
 import LevelIcon from "@assets/icons/common/level.svg?react";
 import { useTheme } from "styled-components";
+import { useLevel } from "@/api/user/hooks/useLevel";
 
 interface LevelSelectModalProps {
   closeModal: () => void;
@@ -13,7 +13,7 @@ interface LevelSelectModalProps {
 
 const LevelSelectModal = ({ closeModal }: LevelSelectModalProps) => {
   const [selectedLevel, setSelectedLevel] = useState<LevelType>(LevelType.HIGH);
-  const setLevel = useUserStore((state) => state.setLevel);
+  const { mutate: selectLevel } = useLevel(); // 레벨 설정 API 훅
   const theme = useTheme();
 
   const handleSelect = (level: LevelType) => {
@@ -23,15 +23,14 @@ const LevelSelectModal = ({ closeModal }: LevelSelectModalProps) => {
   const handleSubmit = async () => {
     if (!selectedLevel) return;
 
-    try {
-      // 레벨 저장 API 요청 추가 필요
-      setLevel(selectedLevel); // 상태 저장
-      // 추후에는 이를 useQuery 훅으로 전환할 예정
-
-      closeModal();
-    } catch (error) {
-      console.error("레벨 저장 실패", error);
-    }
+    selectLevel(selectedLevel, {
+      onSuccess: () => {
+        closeModal();
+      },
+      onError: (error) => {
+        console.error("레벨 저장 실패", error);
+      },
+    });
   };
 
   return (

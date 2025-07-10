@@ -21,10 +21,11 @@ export const useKakaoLogin = (code: string | null) => {
         localStorage.setItem("accessToken", userInfo.accessToken);
 
         navigate("/");
-
-        openModal("custom", {
-          children: () => <LevelSelectModal closeModal={closeModal} />,
-        });
+        if (userInfo.new) {
+          openModal("custom", {
+            children: () => <LevelSelectModal closeModal={closeModal} />,
+          });
+        }
       } catch (error) {
         console.error("카카오 로그인 실패:", error);
       }
