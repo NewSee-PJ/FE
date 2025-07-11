@@ -16,7 +16,8 @@ export const NewsItem = ({ news }: NewsItemProps) => {
     e.currentTarget.src = defaultImage;
   };
 
-  const isBookmarked = useBookmarkStore((state) => state.isBookmarked);
+  const bookmarkIds = useBookmarkStore((state) => state.bookmarkIds);
+  const isBookmarked = bookmarkIds.includes(news.newsId);
 
   const handleClick = () => {
     navigate(`/news/${news.newsId}`);

@@ -7,7 +7,7 @@ export default function Layout() {
   const location = useLocation();
 
   // 헤더를 숨길 경로 목록
-  const noHeaderPaths = ["/login", "/news/:newsId"];
+  const noHeaderPaths = ["/login", "/news/:newsId", "/bookmark", "/setting"];
 
   const isHeaderVisible = !noHeaderPaths.some((path) =>
     matchPath({ path, end: true }, location.pathname)
@@ -16,7 +16,7 @@ export default function Layout() {
     <S.AppContainer>
       <S.AppWrapper>
         {isHeaderVisible && <Header />}
-        <S.AppMain>
+        <S.AppMain noHeader={!isHeaderVisible}>
           <Outlet />
         </S.AppMain>
         {isHeaderVisible && <BottomNav />}

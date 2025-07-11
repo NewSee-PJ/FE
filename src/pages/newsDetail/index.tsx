@@ -1,5 +1,5 @@
 import * as S from "./index.styles";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LevelTag } from "@/components/common/LevelTag";
 import { BookmarkButton } from "@/components/common/BookmarkButton";
@@ -14,15 +14,20 @@ import {
   NewsContentSection,
   NewsFooter,
 } from "./components";
+import { useBookmarkStore } from "@/stores/bookmark";
+import { useModalStore } from "@/stores/modal";
 
 export const NewsDetail = () => {
   const { newsId } = useParams();
   const id = Number(newsId);
+  const navigate = useNavigate();
 
   const { news, setNews } = useNewsStore();
   const [loading, setLoading] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [imageSrc, setImageSrc] = useState("");
+
+  const { openModal, closeModal } = useModalStore();
 
   useEffect(() => {
     if (!id) return;
@@ -41,15 +46,31 @@ export const NewsDetail = () => {
     setLoading(false);
   }, [id]);
 
-  if (notFound || !news || news.newsId !== id) {
-    // TODO: notFound 관련 UI 필요. 추후 대체 예정
-    return <div>뉴스를 찾을 수 없습니다.</div>;
-  }
+  // 뉴스 없을 때 모달
+  useEffect(() => {
+    if (notFound) {
+      openModal("check", {
+        title: "Not Found",
+        message: "해당 뉴스 기사를 찾을 수 없습니다.",
+        onClose: () => navigate(-1),
+      });
+    }
+  }, [notFound]);
 
-  if (loading) {
-    // TODO: loading 관련 UI 필요. 추후 대체 예정
-    return <div>로딩 중입니다...</div>;
-  }
+  // 로딩 시 로딩 모달
+  useEffect(() => {
+    if (loading) {
+      openModal("loading");
+    } else {
+      closeModal();
+    }
+  }, [loading]);
+
+  const bookmarkIds = useBookmarkStore((state) => state.bookmarkIds);
+  const newsExists = news && news.newsId === id;
+  const isBookmarked = newsExists ? bookmarkIds.includes(news.newsId) : false;
+
+  if (!newsExists) return null;
 
   return (
     <S.Container>
@@ -62,7 +83,7 @@ export const NewsDetail = () => {
               <p>{news.source}</p>
               <p>{getTimeAgo(news.time)}</p>
             </S.NewsInfo>
-            <BookmarkButton newsId={id} />
+            {isBookmarked !== undefined && <BookmarkButton newsId={id} />}
           </S.NewsInfoContainer>
           <S.Title>{news.title}</S.Title>
           <S.LevelNShare>

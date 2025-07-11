@@ -3,11 +3,21 @@ import SearchIcon from "@assets/icons/common/search.svg?react";
 import useInput from "@/hooks/common/useInput";
 import { useCallback } from "react";
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: (keyword: string) => void;
+  placeholder?: string;
+}
+
+export const SearchBar = ({
+  onSearch,
+  placeholder = "검색어를 입력하세요",
+}: SearchBarProps) => {
   const { value, onChange, reset } = useInput();
 
   const handleSearch = useCallback(() => {
+    const trimmed = value.trim();
     if (!value.trim()) return;
+    onSearch(trimmed);
     console.log("검색어:", value);
   }, [value, reset]);
 
@@ -22,7 +32,7 @@ export const SearchBar = () => {
       <S.InputContainer>
         <SearchIcon onClick={handleSearch} style={{ cursor: "pointer" }} />
         <S.Input
-          placeholder="ddd"
+          placeholder={placeholder}
           value={value}
           onChange={onChange}
           onKeyDown={handleKeyDown}

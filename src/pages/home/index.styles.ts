@@ -7,6 +7,7 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  flex: 1;
 `;
 
 export const DescriptionContainer = styled.div`

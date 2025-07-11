@@ -51,4 +51,10 @@ export const CategoryList = styled.div`
   overflow: scroll;
   align-items: flex-start;
   align-self: stretch;
+
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 `;

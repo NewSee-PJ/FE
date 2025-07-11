@@ -30,7 +30,10 @@ export const News = () => {
           <S.HeadText>오늘의 뉴스</S.HeadText>
           <LevelTag />
         </S.HeadTitleContainer>
-        <SearchBar />
+        <SearchBar
+          placeholder="뉴스를 검색하세요"
+          onSearch={(keyword) => console.log("뉴스 검색:", keyword)}
+        />
         <S.CategoryList>
           {["전체", ...NEWS_CATEGORY_TAGS].map((tag, index) => (
             <CategoryTag
