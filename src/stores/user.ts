@@ -10,6 +10,7 @@ interface UserState {
   name: string | null;
   email: string | null;
   profileImage: string | null;
+  joinDate: Date | null;
   login: (data: {
     accessToken: string;
     refreshToken: string;
@@ -19,6 +20,12 @@ interface UserState {
     level: LevelType;
   }) => void;
   logout: () => void;
+  setProfile: (data: {
+    name: string;
+    profileImage: string;
+    level: LevelType;
+    joinDate: Date;
+  }) => void;
   setLevel: (level: LevelType) => void;
 }
 
@@ -31,6 +38,7 @@ export const useUserStore = create<UserState>()(
       name: null,
       email: null,
       profileImage: null,
+      joinDate: null,
       login: ({
         accessToken,
         refreshToken,
@@ -48,10 +56,25 @@ export const useUserStore = create<UserState>()(
           level,
         }),
       logout: () => {
-        set({ accessToken: null, refreshToken: null });
+        set({
+          accessToken: null,
+          refreshToken: null,
+          level: LevelType.MEDIUM,
+          name: null,
+          email: null,
+          profileImage: null,
+          joinDate: null,
+        });
         useBookmarkStore.getState().reset();
       },
       setLevel: (level: LevelType) => set({ level }),
+      setProfile: ({ name, profileImage, level, joinDate }) =>
+        set({
+          name,
+          profileImage,
+          level,
+          joinDate: new Date(joinDate),
+        }),
     }),
     {
       name: "auth",
