@@ -1,6 +1,6 @@
 import * as S from "../index.styles";
 import CommonButton from "@components/common/CommonButton";
-import { useModal } from "@hooks/useModal";
+import { useModal } from "@/hooks/common/useModal";
 
 interface CheckModalProps {
   title?: string;

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { LevelType } from "@/types/level";
+import { useBookmarkStore } from "./bookmark";
 
 interface UserState {
   accessToken: string | null;
@@ -46,7 +47,10 @@ export const useUserStore = create<UserState>()(
           profileImage,
           level,
         }),
-      logout: () => set({ accessToken: null, refreshToken: null }),
+      logout: () => {
+        set({ accessToken: null, refreshToken: null });
+        useBookmarkStore.getState().reset();
+      },
       setLevel: (level: LevelType) => set({ level }),
     }),
     {

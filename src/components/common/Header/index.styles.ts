@@ -33,9 +33,13 @@ export const UserInfo = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  img {
+    border-radius: 50%;
+    cursor: pointer;
+  }
 `;
 
 export const UserName = styled.p`
-  ${({ theme }) => theme.fonts.Body2};
-  color: ${({ theme }) => theme.colors.text.primary};
+  ${({ theme }) => theme.fonts.Body3};
+  color: ${({ theme }) => theme.colors.text.secondary};
 `;

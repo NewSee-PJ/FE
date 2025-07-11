@@ -3,6 +3,8 @@ export const AppContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  height: 100dvh;
+  overflow: hidden;
 `;
 
 export const AppWrapper = styled.div`
@@ -15,9 +17,14 @@ export const AppWrapper = styled.div`
   position: relative;
   overflow-x: hidden;
   align-items: center;
+  flex: 1;
+  min-height: 0;
 `;
 
 export const AppMain = styled.main`
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   padding-bottom: 56px;
   padding-top: 68px;
   width: 100%;
