@@ -1,23 +1,25 @@
+import type { LevelType } from "./level";
+import type { NewsCategoryType } from "./category";
+
 export type NewsDetailType = {
   newsId: number;
   title: string;
-  category: CategoryType;
+  category: NewsCategoryType;
   source: string;
   time: Date;
+  imageUrl: string;
   url: string;
   userLevel: LevelType;
   originalContent: string;
   transformedContent: string;
   summary: string;
   keywords: KeywordType[];
+  isBookmarked?: boolean;
 };
 
 export type KeywordType = {
+  wordId: number;
   term: string;
   description: string;
   source: string;
 };
-
-export type CategoryType = "과학" | "경제" | "사회" | "연예" | "기타";
-
-export type LevelType = "상" | "중" | "하";

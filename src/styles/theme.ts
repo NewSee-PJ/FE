@@ -20,7 +20,7 @@ export const fonts = {
   Body1: {
     fontFamily: "Pretendard Variable",
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: "24px",
   },
   Body1B: {
@@ -32,7 +32,7 @@ export const fonts = {
   Body2: {
     fontFamily: "Pretendard Variable",
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: "20px",
   },
   Body2B: {
@@ -44,7 +44,7 @@ export const fonts = {
   Body3: {
     fontFamily: "Pretendard Variable",
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: "16px",
   },
   Button1: {
@@ -191,12 +191,18 @@ export const componentColor = {
     yellow: primitive.yellow[500],
     orange: primitive.orange[500],
     red: primitive.red[500],
+    blue: primitive.bluePrimary[500],
     divider: primitive.gray[200],
     gray700: primitive.gray[700],
   },
 };
 
+export const gradients = {
+  blue: `linear-gradient(90deg, ${primitive.bluePrimary[400]} 0%,  ${primitive.bluePrimary[600]} 100%)`,
+};
+
 export const theme = {
   colors: componentColor,
   fonts: fonts,
+  gradients: gradients,
 };

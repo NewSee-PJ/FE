@@ -2,3 +2,8 @@ export * from "./home";
 export * from "./mypage";
 export * from "./news";
 export * from "./words";
+export * from "./login";
+export * from "./kakaoLogin";
+export * from "./newsDetail";
+export * from "./bookmark";
+export * from "./setting";

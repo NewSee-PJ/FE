@@ -1,12 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import * as S from "./index.styles";
 import { useTheme } from "styled-components";
-import {
-  HomeIcon,
-  MypageIcon,
-  NewsIcon,
-  WordsIcon,
-} from "@/assets/icons/common/index";
+import HomeIcon from "@assets/icons/common/home.svg?react";
+import MypageIcon from "@assets/icons/common/news.svg?react";
+import NewsIcon from "@assets/icons/common/words.svg?react";
+import WordsIcon from "@assets/icons/common/mypage.svg?react";
 
 interface NavItem {
   label: string;

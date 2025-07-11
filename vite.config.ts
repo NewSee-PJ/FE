@@ -5,18 +5,7 @@ import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [
-    tsconfigPaths(),
-    react(),
-
-    svgr({
-      svgrOptions: {
-        icon: true,
-      },
-
-      include: "**/*.svg",
-    }),
-  ],
+  plugins: [tsconfigPaths(), react(), svgr()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
