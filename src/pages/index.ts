@@ -4,3 +4,4 @@ export * from "./news";
 export * from "./words";
 export * from "./login";
 export * from "./kakaoLogin";
+export * from "./newsDetail";

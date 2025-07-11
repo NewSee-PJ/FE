@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  ${({ theme }) => theme.fonts.Body2};
+  ${({ theme }) => theme.fonts.Body3};
   color: ${({ theme }) => theme.colors.text.disabled};
 `;
 

@@ -1,4 +1,4 @@
-import { useModal } from "@hooks/useModal";
+import { useModal } from "@/hooks/common/useModal";
 import ConfirmModal from "./ConfirmModal";
 import CheckModal from "./CheckModal";
 import LoadingModal from "./LoadingModal";
