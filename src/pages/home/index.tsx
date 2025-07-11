@@ -3,7 +3,7 @@ import LinkIcon from "@assets/icons/home/link.svg?react";
 import * as S from "./index.styles";
 import { useTheme } from "styled-components";
 import CommonButton from "@/components/common/CommonButton";
-import useInput from "@/hooks/useInput";
+import useInput from "@/hooks/common/useInput";
 
 export const Home = () => {
   const theme = useTheme();

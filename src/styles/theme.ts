@@ -20,7 +20,7 @@ export const fonts = {
   Body1: {
     fontFamily: "Pretendard Variable",
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: "24px",
   },
   Body1B: {
@@ -32,7 +32,7 @@ export const fonts = {
   Body2: {
     fontFamily: "Pretendard Variable",
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: "20px",
   },
   Body2B: {
@@ -44,7 +44,7 @@ export const fonts = {
   Body3: {
     fontFamily: "Pretendard Variable",
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: "16px",
   },
   Button1: {

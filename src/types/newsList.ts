@@ -1,14 +1,12 @@
-import type { CategoryType } from "./newsDetail";
-export type NewsListType = {
-  newsList: NewsListItemType[];
-};
+import type { NewsCategoryType } from "./category";
 
 export type NewsListItemType = {
   newsId: number;
   title: string;
-  category: CategoryType;
+  category: NewsCategoryType;
   content: string;
   source: string;
   time: Date;
-  url: string;
+  imageUrl: string;
+  isBookmarked?: boolean;
 };
