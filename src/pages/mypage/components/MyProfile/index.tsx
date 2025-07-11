@@ -4,14 +4,13 @@ import { LevelTag } from "@/components/common/LevelTag";
 import ProfileDefaultImage from "@assets/images/profileImage.png";
 import { formatDateToDot } from "@/utils/format";
 import { useMyProfile } from "@/api/user/hooks/useMyProfile";
-import { useWordsStore } from "@/stores/words";
 
 export const MyProfile = () => {
   const { isLoading } = useMyProfile();
   const name = useUserStore((state) => state.name);
   const profileImage = useUserStore((state) => state.profileImage);
   const joinDate = useUserStore((state) => state.joinDate);
-  const wordCount = useWordsStore((state) => state.wordCount);
+  const savedWordCount = useUserStore((state) => state.savedWordCount);
 
   if (isLoading) return <div>불러오는 중...</div>;
 
@@ -32,7 +31,7 @@ export const MyProfile = () => {
           </S.JoinInfo>
         </S.UserInfo>
         <S.WordInfo>
-          <S.WordCount>{wordCount}</S.WordCount>
+          <S.WordCount>{savedWordCount}</S.WordCount>
           <S.WordLabel>저장된 단어</S.WordLabel>
         </S.WordInfo>
       </S.Profile>

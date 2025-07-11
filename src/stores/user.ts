@@ -11,6 +11,7 @@ interface UserState {
   email: string | null;
   profileImage: string | null;
   joinDate: Date | null;
+  savedWordCount: number | null;
   login: (data: {
     accessToken: string;
     refreshToken: string;
@@ -25,6 +26,7 @@ interface UserState {
     profileImage: string;
     level: LevelType;
     joinDate: Date;
+    savedWordCount: number;
   }) => void;
   setLevel: (level: LevelType) => void;
 }
@@ -39,6 +41,7 @@ export const useUserStore = create<UserState>()(
       email: null,
       profileImage: null,
       joinDate: null,
+      savedWordCount: 0,
       login: ({
         accessToken,
         refreshToken,
@@ -64,16 +67,18 @@ export const useUserStore = create<UserState>()(
           email: null,
           profileImage: null,
           joinDate: null,
+          savedWordCount: null,
         });
         useBookmarkStore.getState().reset();
       },
       setLevel: (level: LevelType) => set({ level }),
-      setProfile: ({ name, profileImage, level, joinDate }) =>
+      setProfile: ({ name, profileImage, level, joinDate, savedWordCount }) =>
         set({
           name,
           profileImage,
           level,
           joinDate: new Date(joinDate),
+          savedWordCount,
         }),
     }),
     {

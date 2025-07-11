@@ -20,6 +20,7 @@ export interface ProfileResult {
   profileImage: string;
   level: LevelType;
   joinDate: Date;
+  savedWordCount: number;
 }
 
 export const getKakaoAccessToken = async (code: string) => {
