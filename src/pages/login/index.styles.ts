@@ -9,7 +9,6 @@ export const Container = styled.div`
   width: 100%;
   padding: 0 20px;
   flex: 1;
-  margin-top: 150px;
 `;
 
 export const HeadLine = styled.h1`

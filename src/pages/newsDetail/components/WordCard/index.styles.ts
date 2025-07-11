@@ -40,6 +40,7 @@ export const WordContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
+  width: 100%;
 `;
 
 export const WordAddButton = styled.button`

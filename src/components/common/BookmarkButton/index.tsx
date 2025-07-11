@@ -9,8 +9,9 @@ interface BookmarkButtonProps {
 
 export const BookmarkButton = ({ newsId, onClick }: BookmarkButtonProps) => {
   const toggleBookmark = useBookmarkStore((state) => state.toggleBookmark);
-  const bookmarks = useBookmarkStore((state) => state.bookmarks);
-  const isBookmarked = bookmarks.includes(newsId);
+  const isBookmarked = useBookmarkStore((state) =>
+    state.bookmarkIds.includes(newsId)
+  );
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

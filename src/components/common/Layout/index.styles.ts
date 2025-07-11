@@ -1,4 +1,9 @@
 import styled from "styled-components";
+
+interface AppMainProps {
+  noHeader?: boolean;
+}
+
 export const AppContainer = styled.div`
   width: 100%;
   display: flex;
@@ -21,11 +26,11 @@ export const AppWrapper = styled.div`
   min-height: 0;
 `;
 
-export const AppMain = styled.main`
+export const AppMain = styled.main<AppMainProps>`
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding-bottom: 56px;
+  padding-bottom: ${({ noHeader }) => (noHeader ? "0" : "56px")};
   padding-top: 68px;
   width: 100%;
   display: flex;
