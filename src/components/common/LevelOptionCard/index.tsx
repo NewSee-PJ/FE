@@ -23,11 +23,11 @@ const LevelOptionCard = ({
 }: LevelOptionCardProps) => {
   const renderLevelIcon = () => {
     switch (level) {
-      case "low":
+      case "LOW":
         return <LowStarIcon width={18} height={18} />;
-      case "medium":
+      case "MEDIUM":
         return <MediumStarIcon width={18} height={18} />;
-      case "high":
+      case "HIGH":
         return <HighStarIcon width={18} height={18} />;
       default:
         return null;

@@ -8,11 +8,12 @@ export const useNewsList = () => {
 
   return useQuery<NewsListItemType[], Error>({
     queryKey: ["newsList"],
-    queryFn: getNewsList,
-    onSuccess: setNewsList,
-
+    queryFn: async () => {
+      const data = await getNewsList();
+      setNewsList(data);
+      return data;
+    },
     staleTime: 1000 * 60 * 5,
-    cacheTime: 1000 * 60 * 10,
     refetchOnMount: false,
     retry: 1,
   });

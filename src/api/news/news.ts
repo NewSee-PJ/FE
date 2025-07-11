@@ -20,10 +20,10 @@ export const saveNewsBookMark = async (newsId: number) => {
   return response.result;
 };
 
-export const getNewsList = async () => {
+export const getNewsList = async (): Promise<NewsListItemType[]> => {
   const response = await sendRequest<NewsListItemType[]>(
     newsInstance,
-    "POST",
+    "GET",
     ""
   );
 
