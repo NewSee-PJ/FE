@@ -111,9 +111,15 @@ export const applyInterceptors = (instance: AxiosInstance): void => {
         try {
           const refreshToken = useUserStore.getState().refreshToken;
 
-          const res = await axios.post("/api/user/refresh", {
-            refreshToken,
-          });
+          const res = await axios.post(
+            "/api/user/refresh",
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${refreshToken}`,
+              },
+            }
+          );
 
           const newAccessToken = res.data.result.accessToken;
           useUserStore.getState().setAccessToken(newAccessToken);
