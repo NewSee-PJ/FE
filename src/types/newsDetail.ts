@@ -10,7 +10,6 @@ export type NewsDetailType = {
   imageUrl: string;
   url: string;
   userLevel: LevelType;
-  originalContent: string;
   transformedContent: string;
   summary: string;
   keywords: KeywordType[];
