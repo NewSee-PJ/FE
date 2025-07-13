@@ -16,10 +16,8 @@ export const useKakaoLogin = (code: string | null) => {
       try {
         const kakaoAccessToken = await getKakaoAccessToken(code);
         const userInfo = await loginWithKakaoToken(kakaoAccessToken);
-
         useUserStore.getState().login(userInfo);
-        localStorage.setItem("accessToken", userInfo.accessToken);
-
+        // localStorage.setItem("accessToken", userInfo.accessToken);
         navigate("/");
         if (userInfo.new) {
           openModal("custom", {
