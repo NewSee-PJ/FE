@@ -20,5 +20,6 @@ export type KeywordType = {
   wordId: number;
   term: string;
   description: string;
-  source: string;
+  category?: NewsCategoryType;
+  date?: Date;
 };

@@ -53,6 +53,14 @@ export const NewsDetail = () => {
 
   if (!newsExists) return null;
 
+  const handleCopyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <S.Container>
       <TopBar title="뉴스 상세" />
@@ -69,7 +77,7 @@ export const NewsDetail = () => {
           <S.Title>{news.title}</S.Title>
           <S.LevelNShare>
             <LevelTag />
-            <S.ShareButton>공유하기</S.ShareButton>
+            <S.ShareButton onClick={handleCopyUrl}>공유하기</S.ShareButton>
           </S.LevelNShare>
         </S.HeadContentContainer>
         <S.Image
