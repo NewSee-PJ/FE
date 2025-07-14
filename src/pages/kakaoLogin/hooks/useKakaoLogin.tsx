@@ -4,6 +4,7 @@ import { loginWithKakaoToken, getKakaoAccessToken } from "@/api/user/user";
 import { useUserStore } from "@/stores/user";
 import { useModal } from "@/hooks/common/useModal";
 import LevelSelectModal from "@/components/common/Modal/LevelSelectModal";
+import { withDelayedGlobalLoading } from "@/utils/delayedGlobalLoading";
 
 export const useKakaoLogin = (code: string | null) => {
   const navigate = useNavigate();
@@ -29,6 +30,6 @@ export const useKakaoLogin = (code: string | null) => {
       }
     };
 
-    login();
+    withDelayedGlobalLoading(login());
   }, [code]);
 };
