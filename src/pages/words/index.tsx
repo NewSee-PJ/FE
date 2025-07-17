@@ -13,16 +13,17 @@ import { LevelTypeToKorean } from "@/utils/level";
 import { WordCardModal } from "@/components/common/Modal/WordCardModal";
 import { useSearchWords } from "@/api/words/hooks/useSearchWords";
 import type { WordType } from "@/types/word";
+import useSearchHandler from "@/hooks/common/useSearchHandler";
 
 export const Words = () => {
   const theme = useTheme();
-  const { mutate: searchWordsMutate } = useSearchWords();
+  const { mutateAsync: searchWordsMutate } = useSearchWords();
 
   const [showWordModal, setShowWordModal] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedTag, setSelectedTag] = useState("전체");
-  const [searchResult, setSearchResult] = useState<WordType[] | null>(null);
-  const [isSearching, setIsSearching] = useState(false);
+  const { isSearching, handleSearch, handleReset, searchResult } =
+    useSearchHandler<WordType>({ mutateFn: searchWordsMutate });
 
   useMyWords();
 
@@ -40,23 +41,6 @@ export const Words = () => {
   const handleWordClick = (index: number) => {
     setSelectedIndex(index);
     setShowWordModal(true);
-  };
-
-  const handleSearch = (keyword: string) => {
-    setIsSearching(true);
-    searchWordsMutate(keyword, {
-      onSuccess: (data) => {
-        setSearchResult(data.words);
-      },
-      onError: () => {
-        setSearchResult([]);
-      },
-    });
-  };
-
-  const handleResetSearch = () => {
-    setIsSearching(false);
-    setSearchResult(null);
   };
 
   return (
@@ -79,7 +63,7 @@ export const Words = () => {
         <SearchBar
           placeholder="단어를 검색하세요"
           onSearch={handleSearch}
-          onReset={handleResetSearch}
+          onReset={handleReset}
         />
         {isSearching && (
           <S.SearchResultText>

@@ -10,37 +10,17 @@ import { useNewsListStore } from "@/stores/newsList";
 import { useNewsList } from "@/api/news/hooks/useNewsList";
 import { useBookmark } from "@/api/bookmark/hooks/useBookmark";
 import { useSearchNews } from "@/api/news/hooks/useSearchNews";
+import useSearchHandler from "@/hooks/common/useSearchHandler";
 
 export const News = () => {
   const { fetchBookmarks } = useBookmark();
-  const { mutate: searchNewsMutate } = useSearchNews();
-  const [searchResult, setSearchResult] = useState<NewsListItemType[] | null>(
-    null
-  );
-  const [isSearching, setIsSearching] = useState(false);
+  const { mutateAsync: searchNewsMutate } = useSearchNews();
+  const { isSearching, handleSearch, handleReset, searchResult } =
+    useSearchHandler<NewsListItemType>({ mutateFn: searchNewsMutate });
 
   const [selectedTag, setSelectedTag] = useState("전체");
-  useEffect(() => {
-    fetchBookmarks();
-  }, []);
+
   useNewsList();
-
-  const handleSearch = (keyword: string) => {
-    setIsSearching(true);
-    searchNewsMutate(keyword, {
-      onSuccess: (data) => {
-        setSearchResult(data);
-      },
-      onError: () => {
-        setSearchResult([]);
-      },
-    });
-  };
-
-  const handleResetSearch = () => {
-    setIsSearching(false);
-    setSearchResult(null);
-  };
 
   const newsList = useNewsListStore((state) => state.newsList);
   const baseList = isSearching ? searchResult || [] : newsList;
@@ -54,6 +34,10 @@ export const News = () => {
     fetchBookmarks();
   }, []);
 
+  // useEffect(() => {
+  //   handleReset();
+  // }, [selectedTag]);
+
   return (
     <S.Container>
       <S.HeaderSection>
@@ -64,7 +48,7 @@ export const News = () => {
         <SearchBar
           placeholder="뉴스를 검색하세요"
           onSearch={handleSearch}
-          onReset={handleResetSearch}
+          onReset={handleReset}
         />
         {isSearching && (
           <S.SearchResultText>
@@ -87,7 +71,9 @@ export const News = () => {
         {filteredNews.length === 0 ? (
           <S.EmptyMessage>해당 카테고리의 뉴스가 없습니다.</S.EmptyMessage>
         ) : (
-          filteredNews.map((newsItem) => <NewsItem news={newsItem} />)
+          filteredNews.map((newsItem) => (
+            <NewsItem key={newsItem.newsId} news={newsItem} />
+          ))
         )}
       </S.BodySection>
     </S.Container>

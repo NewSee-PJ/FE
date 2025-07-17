@@ -69,5 +69,5 @@ export const searchWords = async (keyword: string) => {
     throw new Error(response.message || "단어 검색 실패");
   }
 
-  return response.result;
+  return response.result.words;
 };
